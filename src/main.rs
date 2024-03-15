@@ -13,6 +13,8 @@ static HELLO: &[u8] = b"Hello World!";
 
 #[panic_handler]
 fn panic(_info: &PanicInfo) -> ! {
+    println!("{}", _info);
+    
     loop {}
 }
 
@@ -20,7 +22,8 @@ mod vga_buffer;
 
 #[no_mangle] // no mangling to make sure the program call _main
 pub extern "C" fn _start() -> ! {
-    vga_buffer::print_sth();
+    println!("Hello World {}", "!");
+    // vga_buffer::print_sth();
     // let vga_buffer = 0xb8000 as *mut u8;
     // 
     // for (i, byte) in HELLO.iter().enumerate() {
